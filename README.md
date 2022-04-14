@@ -26,3 +26,8 @@ Optional arguments:
 ```
 
 
+### WIP
+This software is currently under development, and the current release has these issues:
+1. It is does not efficiently implement eBash2 libraries, which leads to a dramatic increase of script size as more libraries are imported.
+2. Some functions may not work as intended after translation.
+3. Translation takes unnecessary times
