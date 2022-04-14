@@ -11,14 +11,19 @@ public class Main {
     public static String ebash2path = "/usr/local/eBash2";
 
     public static String currentClass = "";
+    public static String version = "1.0beta";
 
     public static void main(String[] args) throws Exception {
         System.out.println("eBash2 to Native Bash Translator");
         System.out.println("Copyright (C) 2021 _410");
         System.out.println("");
 
+
         // Time measure start
         long start = System.currentTimeMillis();
+
+        // Parameters
+        BasicArguments.parseParam(args);
 
         // Check if there is eBash runtime
         Runtime.checkRuntime(args);
