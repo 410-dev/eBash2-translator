@@ -51,7 +51,7 @@ public class EBClass {
                 for(int j = i + 1; j < lines.length; j++) {
                     String nextLine = lines[j];
                     i = j;
-                    if(nextLine.trim().endsWith("}")) {
+                    if(nextLine.trim().replace(" ", "").equals("}")) {
                         break;
                     }
                     functionCode += nextLine + "\n";
@@ -76,6 +76,7 @@ public class EBClass {
     }
 
     public String toString() {
+
         StringBuilder sb = new StringBuilder();
         if (dependencies != null) {
             sb.append(dependencies.toString());
