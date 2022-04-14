@@ -21,15 +21,15 @@ public class Imports {
             Classes.add(e);
         }
 
-        System.out.println("Imported classes: ");
+        Main.print("Imported classes: ");
         for(EBClass e : Classes.classes.values()) {
-            System.out.println(e.classFileName.replace("/lib/", ""));
+            Main.print(e.classFileName.replace("/lib/", ""));
         }
-        System.out.println("Imported packages: ");
+        Main.print("Imported packages: ");
         for(String e : Classes.allPackages) {
-            System.out.println(e);
+            Main.print(e);
         }
-        System.out.println("Total imports: " + c.size());
+        Main.print("Total imports: " + c.size());
     }
 
     public static ArrayList<EBClass> analyze(String file) throws IOException {
@@ -81,12 +81,12 @@ public class Imports {
                     for (String packageFile : packageFileList) {
 
                         if (! new File(packageFile).isFile() || ! new File(packageFile).getAbsolutePath().endsWith(".ebsrc")) {
-                            System.out.println("Error: " + packageFile + " does not exist, or is not a ebsrc file.");
+                            System.err.println("Error: " + packageFile + " does not exist, or is not a ebsrc file.");
                             System.exit(1);
                         }
 
                         if (duplicationChecker.contains(packageFile)) {
-                            System.out.println("Warning: " + packageFile + " is already imported.");
+                            Main.warning("WARNING: " + packageFile + " is already imported.");
                             continue;
                         }
 
@@ -101,12 +101,12 @@ public class Imports {
 
                     // Add the package path to the list
                     if (! new File(packagePath).isFile() || ! new File(packagePath).getAbsolutePath().endsWith(".ebsrc")) {
-                        System.out.println("Error: " + packagePath + " does not exist, or is not a ebsrc file.");
+                        System.err.println("Error: " + packagePath + " does not exist, or is not a ebsrc file.");
                         System.exit(9);
                     }
 
                     if (duplicationChecker.contains(packagePath)) {
-                        System.out.println("Warning: " + packagePath + " is already imported.");
+                        Main.warning("WARNING: " + packagePath + " is already imported.");
                         continue;
                     }
 

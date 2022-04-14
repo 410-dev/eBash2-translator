@@ -1,5 +1,6 @@
 package eb2translator;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import eb2translator.ebash2.BaseImplementation;
@@ -7,11 +8,13 @@ import eb2translator.ebash2.struct.EBClass;
 
 public class Translate {
     public static void translate() {
-        System.out.println("Building to string...");
+        Main.print("Building to string...");
 
         for(String scriptPath : FileUtils.allFiles) {
 
-            System.out.println("Translating " + InputOutputLocator.getOutputPath(scriptPath) + "...");
+            Main.currentClass = new File(scriptPath).getName();
+
+            Main.print("Translating " + InputOutputLocator.getOutputPath(scriptPath) + "...");
 
 
             StringBuilder stringBuilder = new StringBuilder();
@@ -51,9 +54,9 @@ public class Translate {
                         // Search from loaded class
                         importedClasses.add(Classes.getClass(specificName));
 
-                        System.out.println("Importing " + specificName + "...");
+                        Main.print("Importing " + specificName + "...");
                     }else{
-                        System.out.println("Package included: " + importingPackage);
+                        Main.print("Package included: " + importingPackage);
                     }
 
                     // Check if length is 0
@@ -78,7 +81,7 @@ public class Translate {
             // Write to file
             FileUtils.writeFile(InputOutputLocator.getOutputPath(scriptPath), stringBuilder.toString());
 
-            System.out.println("Translated " + InputOutputLocator.getOutputPath(scriptPath) + "...");
+            Main.print("Translated " + InputOutputLocator.getOutputPath(scriptPath));
         }
     }
 }

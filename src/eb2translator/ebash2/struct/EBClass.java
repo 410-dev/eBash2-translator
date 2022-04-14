@@ -85,8 +85,10 @@ public class EBClass {
             sb.append("function " + key + "() {\n");
             sb.append(function.get(key));
             sb.append("}\n\n");
+            Main.print("[" + Main.currentClass + "]\tBuilding: " + key);
         }
 
+    
         return sb.toString();
     }
 }

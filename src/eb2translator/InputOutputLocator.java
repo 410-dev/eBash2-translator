@@ -27,7 +27,7 @@ public class InputOutputLocator {
         }
 
         // TODO: DELETE THIS AFTER THE TEST IS COMPLETE
-        input = ".sample/";
+        input = "./sample";
 
         if (input.equals("")) {
             throw new RuntimeException("Input file is not specified.");

@@ -35,4 +35,15 @@ public class Main {
     public static void isLastArgument(int length, int i, String arg) {
         if(i == length - 1) throw new RuntimeException("Unexpected end of argument: " + arg);
     }
+
+    public static void print(String s) {
+        System.out.println(s);
+        try{Thread.sleep(2);}catch(Exception e){}
+    }
+
+    public static void warning(String s) {
+        warnings++;
+        System.out.println(s);
+    }
+
 }

@@ -93,7 +93,6 @@ public class FileUtils {
 
         for (String file : nonCompilableFiles) {
             String outputPath = InputOutputLocator.getOutputPath(file);
-            System.out.println("Copying file: " + file + " to " + outputPath);
             try {
                 File originalFile = new File(file);
                 File outputFile = new File(outputPath);
@@ -112,7 +111,7 @@ public class FileUtils {
                 out.close();
 
             }catch(Exception e) {
-                System.out.println("WARNING: Non-compilable file are note copied: " + file + " -> " + outputPath);
+                Main.warning("WARNING: Non-compilable file are note copied: " + file + " -> " + outputPath);
                 e.printStackTrace();
             }
         }
