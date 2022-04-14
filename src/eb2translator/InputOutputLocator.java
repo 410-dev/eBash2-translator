@@ -9,7 +9,8 @@ public class InputOutputLocator {
     public static String output = "";
 
     public static String getOutputPath(String file) {
-        return output + File.separator + file.substring(input.length() + 1);
+        if (isDirectory) return output + File.separator + file.substring(input.length() + 1);
+        else return output;
     }
 
     public static void getIOPath(String[] args) {
@@ -25,9 +26,6 @@ public class InputOutputLocator {
                 i++;
             }
         }
-
-        // TODO: DELETE THIS AFTER THE TEST IS COMPLETE
-        input = "./sample";
 
         if (input.equals("")) {
             throw new RuntimeException("Input file is not specified.");
