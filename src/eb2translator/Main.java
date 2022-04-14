@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         System.out.println("eBash2 to Native Bash Translator");
-        System.out.println("Copyright (C) 2021 _410");
+        System.out.println("Copyright (C) 2022 _410");
         System.out.println("");
 
 
