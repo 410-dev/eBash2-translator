@@ -17,11 +17,11 @@ public class Translate {
             Main.print("Translating " + InputOutputLocator.getOutputPath(scriptPath) + "...");
 
 
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder functionalCodes = new StringBuilder();
+            StringBuilder importedPackages = new StringBuilder();
             String script[] = FileUtils.readFile(scriptPath).split("\n");
 
-            stringBuilder.append("#!/bin/bash");
-            stringBuilder.append(BaseImplementation.getBaseImplementations());
+            functionalCodes.append(BaseImplementation.getBaseImplementations());
 
             for(String line : script) {
 
@@ -68,18 +68,21 @@ public class Translate {
                     // Build string
                     for(int i = 0; i < importedClasses.size(); i++) {
                         EBClass e = importedClasses.get(i);
-                        stringBuilder.append(e.toString());
+                        importedPackages.append("# Imported: " + e.classFileName.replaceAll(".ebsrc", "") + "\n");
+                        functionalCodes.append(e.toString());
                     }
 
                     continue;
                 }
 
                 // Append line
-                stringBuilder.append(line + "\n");
+                functionalCodes.append(line + "\n");
             }
 
+            String content = "#!/bin/bash\n" + importedPackages.toString() + functionalCodes.toString();
+
             // Write to file
-            FileUtils.writeFile(InputOutputLocator.getOutputPath(scriptPath), stringBuilder.toString());
+            FileUtils.writeFile(InputOutputLocator.getOutputPath(scriptPath), content);
 
             Main.print("Translated " + InputOutputLocator.getOutputPath(scriptPath));
         }
