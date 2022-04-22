@@ -27,7 +27,17 @@ public class Runtime {
 
         // Verify if eBash2 is installed
         ArrayList<String> runtimeFiles = FileUtils.recursiveFileList(Main.ebash2path);
-        String[] requiredFiles = {
+        isValidRuntime(runtimeFiles);
+
+
+    }
+
+    // Check if the runtime is valid
+    // Compare if the necessary files and the given list
+    // to check if they exist in the runtime
+    public static void isValidRuntime(ArrayList<String> givenRuntimeFiles) {
+
+        String[] requiredFileList = {
             "base/exception.ebbasesrc",
             "base/import.ebbasesrc",
             "base/include.ebbasesrc",
@@ -43,29 +53,26 @@ public class Runtime {
             "lib/Foundation/out.ebsrc",
             "lib/Foundation/string.ebsrc",
         };
-        isValidRuntime(requiredFiles, runtimeFiles);
 
+        for(String requiredFile : requiredFileList) {
 
-    }
+            boolean requiredFileExists = false;
+            for(String runtimeFile : givenRuntimeFiles) {
 
-    public static void isValidRuntime(String[] requiredFiles, ArrayList<String> runtimeFiles) {
-        for(String file : requiredFiles) {
+                // Check if the runtime file exists
+                if(runtimeFile.endsWith(requiredFile)) {
 
-            boolean foundFile = false;
+                    if (runtimeFile.contains("/lib/")) libs.add(runtimeFile);
+                    else if (runtimeFile.contains("/base/")) base.add(runtimeFile);
 
-            for(String runtimeFile : runtimeFiles) {
-
-                if (runtimeFile.contains("/lib/")) libs.add(runtimeFile);
-                else if (runtimeFile.contains("/base/")) base.add(runtimeFile);
-                
-                if(runtimeFile.endsWith(file)) {
-                    foundFile = true;
+                    requiredFileExists = true;
                     break;
+
                 }
             }
 
-            if(!foundFile) {
-                throw new RuntimeException("eBash2 runtime is not installed correctly. Missing file: " + file);
+            if(!requiredFileExists) {
+                throw new RuntimeException("eBash2 runtime is not installed correctly. Missing file: " + requiredFile);
             }
         }
     }

@@ -31,7 +31,7 @@ public class FileUtils {
         }
     }
 
-    // Build file list
+    // List files recursively
     public static ArrayList<String> recursiveFileList(String directoyPath) {
         ArrayList<String> fileList = new ArrayList<>();
 

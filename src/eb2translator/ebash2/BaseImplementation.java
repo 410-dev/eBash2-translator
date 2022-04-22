@@ -4,6 +4,8 @@ import eb2translator.FileUtils;
 import eb2translator.ebash2.runtime.Runtime;
 
 public class BaseImplementation {
+
+    // Select all of the files that ends with .ebbasesrc
     public static String getBaseImplementations() {
         String baseImplementations = "";
 
@@ -14,6 +16,8 @@ public class BaseImplementation {
         // Remove comments
         baseImplementations = baseImplementations.replaceAll("#.*", "");
         
+        baseImplementations = "#!/bin/bash" + baseImplementations;
+
         return baseImplementations;
     }
 }

@@ -1,6 +1,5 @@
 package eb2translator;
 
-import eb2translator.ebash2.Imports;
 import eb2translator.ebash2.runtime.Runtime;
 
 public class Main {
@@ -34,9 +33,6 @@ public class Main {
         // Get all buildable source codes (.sh, .bash, .ebash)
         FileUtils.selectFiles();
 
-        // Import analysis
-        Imports.analyzeFromSource();
-
         // Translate
         Translate.translate();
 
@@ -57,7 +53,7 @@ public class Main {
     }
 
     public static void print(String s) {
-        System.out.println(s);
+        System.out.println(currentClass + s);
         try{Thread.sleep(2);}catch(Exception e){}
     }
 
